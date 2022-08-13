@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/ui/weather_screen.dart';
+import 'package:weather/ui/weather_search_screen.dart';
 import 'package:weather/view_model/weather_screen_view_model.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WeatherScreen(),
+      home: const WeatherSearchScreen(),
     );
   }
 }
