@@ -69,6 +69,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   return Column(
                     children: [
                       Text(viewModel.name),
+                      Text(viewModel.getWeatherIcon(weatherList.id)),
                       Text('Current : ${viewModel.getCurrentTemp()}°'),
                       Text(weatherList.main),
                       const SizedBox(height: 20),
