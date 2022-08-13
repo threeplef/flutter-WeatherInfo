@@ -83,6 +83,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       ),
                       const SizedBox(height: 20),
                       Text(weatherList.description),
+                      Text('${viewModel.getMessage(viewModel.temp())} in ${viewModel.name}!'),
                     ],
                   );
                 }).toList(),

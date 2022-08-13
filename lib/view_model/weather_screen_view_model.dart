@@ -54,4 +54,20 @@ class WeatherScreenViewModel extends ChangeNotifier {
       return '🤷‍';
     }
   }
+
+  num temp() {
+    return kToC(tempList[temperature[0]]);
+  }
+
+  String getMessage(num temp) {
+    if (temp > 27) {
+      return 'It\'s 🍦 time';
+    } else if (temp > 23) {
+      return 'Time for 🩳 and 👕';
+    } else if (temp < 10) {
+      return 'You\'ll need 🧣 and 🧤';
+    } else {
+      return 'Bring a 🧥 just in case';
+    }
+  }
 }
