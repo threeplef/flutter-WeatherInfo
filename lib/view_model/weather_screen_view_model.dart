@@ -8,11 +8,13 @@ class WeatherScreenViewModel extends ChangeNotifier {
   List<Weather> weatherList = [];
   Map<String, dynamic> tempList = {};
   List<String> temp = [];
+  String name = '';
 
   void fetchWeatherLists(String query) async {
     weatherList = await _weatherApi.getWeather(query);
     tempList = await _weatherApi.getTemp(query);
     temp = tempList.keys.toList();
+    name = await _weatherApi.getName(query);
     notifyListeners();
   }
 
