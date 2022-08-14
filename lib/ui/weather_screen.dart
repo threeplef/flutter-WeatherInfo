@@ -39,7 +39,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   child: ListView(
                     children: viewModel.weatherList.map((Weather weatherList) {
                       return Padding(
-                        padding: const EdgeInsets.only(top: 53.0),
+                        padding: const EdgeInsets.symmetric(vertical: 53.0),
                         child: Column(
                           children: [
                             Text(
@@ -47,6 +47,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
+                            const SizedBox(height: 2),
                             Text(' ${viewModel.getCurrentTemp()}°',
                                 style: const TextStyle(fontSize: 25)),
                             const SizedBox(height: 15),
