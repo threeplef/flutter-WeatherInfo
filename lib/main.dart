@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather/color_schemes.g.dart';
 import 'package:weather/ui/weather_search_screen.dart';
 import 'package:weather/view_model/weather_screen_view_model.dart';
 
@@ -15,10 +16,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: true,
+        colorScheme: lightColorScheme,
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: darkColorScheme,
+      ),
+      themeMode: ThemeMode.system,
       home: const WeatherSearchScreen(),
     );
   }
