@@ -74,8 +74,12 @@ class _WeatherSearchScreenState extends State<WeatherSearchScreen> {
                 style: ElevatedButton.styleFrom(
                     primary: Theme.of(context).colorScheme.primaryContainer,
                     elevation: 0),
-                child: const Text('🌈 Show Weather',
-                    style: TextStyle(color: Colors.black)),
+                child: Text(
+                  '🌈 Show Weather',
+                  style: Theme.of(context).colorScheme == lightColorScheme
+                      ? const TextStyle(color: Colors.black)
+                      : const TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
