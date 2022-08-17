@@ -10,11 +10,16 @@ class WeatherScreenViewModel extends ChangeNotifier {
   List<String> temperature = [];
   String name = '';
 
+  bool isLoading = true;
+
   void fetchWeatherLists(String query) async {
+    isLoading = true;
+    notifyListeners();
     weatherList = await _weatherApi.getWeather(query);
     tempList = await _weatherApi.getTemp(query);
     temperature = tempList.keys.toList();
     name = await _weatherApi.getName(query);
+    isLoading = false;
     notifyListeners();
   }
 
