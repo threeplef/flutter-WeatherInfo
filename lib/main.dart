@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/color_schemes.g.dart';
+import 'package:weather/data/repository/weather_screen_repository.dart';
 import 'package:weather/ui/weather_search_screen.dart';
-import 'package:weather/view_model/weather_screen_view_model.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(

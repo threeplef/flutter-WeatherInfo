@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/%20model/weather.dart';
 import 'package:weather/color_schemes.g.dart';
-import 'package:weather/view_model/weather_screen_view_model.dart';
+import 'package:weather/data/%20model/weather.dart';
+import 'package:weather/data/repository/weather_screen_repository.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);

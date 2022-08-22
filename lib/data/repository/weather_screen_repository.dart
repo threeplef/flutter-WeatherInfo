@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather/%20model/weather.dart';
-import 'package:weather/api/weather_api.dart';
+import 'package:weather/data/%20model/weather.dart';
+import 'package:weather/data/source/weather_source.dart';
 
 class WeatherScreenViewModel extends ChangeNotifier {
   final _weatherApi = WeatherApi();
