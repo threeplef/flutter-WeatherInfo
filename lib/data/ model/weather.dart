@@ -1,25 +1,16 @@
-class Weather {
-  String? name;
-  final num id;
-  final String main;
-  final String description;
-  num? temp;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Weather({
-    this.name,
-    required this.id,
-    required this.main,
-    required this.description,
-    this.temp,
-  });
+part 'weather.freezed.dart';
+part 'weather.g.dart';
 
-  factory Weather.fromJson(Map<String, dynamic> json) {
-    return Weather(
-      name: json['name'],
-      id: json['id'] as num,
-      main: json['main'] as String,
-      description: json['description'] as String,
-      temp: json['temp'],
-    );
-  }
+@freezed
+class Weather with _$Weather {
+  const factory Weather({
+    required String weather,
+    required String cityName,
+    required String icon,
+    required num temp
+  }) = _Weather;
+
+  factory Weather.fromJson(Map<String, Object?> json) => _$WeatherFromJson(json);
 }
