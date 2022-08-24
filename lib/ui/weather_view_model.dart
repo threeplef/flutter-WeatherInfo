@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:weather/data/%20model/weather.dart';
 import 'package:weather/data/repository/weather_repository.dart';
-import 'package:weather/data/source/weather_source_impl.dart';
+import 'package:weather/data/source/weather_api_impl.dart';
 
 class WeatherScreenViewModel extends ChangeNotifier {
   final _weatherRepository = WeatherRepository(WeatherApiImpl());
 
   Weather myWeather = const Weather(
-      name: '',
-      id: 0,
-      main: '',
-      description: '',
-      temp: 0,
-      maxTemp: 0,
-      minTemp: 0);
+    name: '',
+    id: 0,
+    main: '',
+    description: '',
+    temp: 0,
+    maxTemp: 0,
+    minTemp: 0,
+  );
   bool isLoading = true;
 
   void fetchWeatherLists(String query) async {

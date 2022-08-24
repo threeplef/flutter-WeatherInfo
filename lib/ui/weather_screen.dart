@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/color_schemes.g.dart';
-import 'package:weather/data/%20model/weather.dart';
 import 'package:weather/ui/weather_view_model.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -30,11 +29,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   height: 500,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: Theme.of(context).colorScheme == lightColorScheme
-                          ? const AssetImage('lib/assets/card_light.png')
-                          : const AssetImage('lib/assets/card_dark.png'),
-                    ),
+                        fit: BoxFit.fill,
+                        image: Theme.of(context).colorScheme == lightColorScheme
+                            ? const AssetImage('lib/assets/card_light.png')
+                            : const AssetImage('lib/assets/card_dark.png')),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -75,7 +73,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 style: const TextStyle(fontSize: 15)),
                             const SizedBox(height: 40),
                             Text(
-                                '${viewModel.getMessage(viewModel.myWeather.temp)}\nin ${viewModel.myWeather.name}!',
+                                '${viewModel.getMessage(double.parse(viewModel.convertTemp(viewModel.myWeather.temp)))}\nin ${viewModel.myWeather.name}!',
                                 style: const TextStyle(fontSize: 15),
                                 textAlign: TextAlign.center),
                           ],
