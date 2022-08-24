@@ -1,43 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:weather/data/%20model/weather.dart';
-import 'package:weather/data/source/weather_source.dart';
+import 'package:weather/data/repository/weather_repository.dart';
+import 'package:weather/data/source/weather_source_impl.dart';
 
 class WeatherScreenViewModel extends ChangeNotifier {
-  final _weatherApi = WeatherApi();
+  final _weatherRepository = WeatherRepository(WeatherApiImpl());
 
-  List<Weather> weatherList = [];
-  Map<String, dynamic> tempList = {};
-  List<String> temperature = [];
-  String name = '';
-
+  Weather myWeather = const Weather(
+      name: '',
+      id: 0,
+      main: '',
+      description: '',
+      temp: 0,
+      maxTemp: 0,
+      minTemp: 0);
   bool isLoading = true;
 
   void fetchWeatherLists(String query) async {
     isLoading = true;
     notifyListeners();
-    weatherList = await _weatherApi.getWeather(query);
-    tempList = await _weatherApi.getTemp(query);
-    temperature = tempList.keys.toList();
-    name = await _weatherApi.getName(query);
+    myWeather = await _weatherRepository.getWeather(query);
     isLoading = false;
     notifyListeners();
   }
 
-  num kToC(num K) {
-    num C = K - 273.15;
-    return C;
-  }
-
-  String getCurrentTemp() {
-    return kToC(tempList[temperature[0]]).toStringAsFixed(1);
-  }
-
-  String getMinTemp() {
-    return kToC(tempList[temperature[2]]).toStringAsFixed(1);
-  }
-
-  String getMaxTemp() {
-    return kToC(tempList[temperature[3]]).toStringAsFixed(1);
+  String convertTemp(num F) {
+    return (F - 273.15).toStringAsFixed(1);
   }
 
   String getWeatherIcon(num id) {
@@ -58,10 +46,6 @@ class WeatherScreenViewModel extends ChangeNotifier {
     } else {
       return '🤷‍';
     }
-  }
-
-  num temp() {
-    return kToC(tempList[temperature[0]]);
   }
 
   String getMessage(num temp) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/color_schemes.g.dart';
 import 'package:weather/data/%20model/weather.dart';
-import 'package:weather/data/repository/weather_screen_repository.dart';
+import 'package:weather/ui/weather_view_model.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);
@@ -39,50 +39,46 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ),
                   child: Column(
                     children: [
-                      Expanded(
-                        child: ListView(
-                          children:
-                              viewModel.weatherList.map((Weather weatherList) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 53.0),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    viewModel.name,
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(' ${viewModel.getCurrentTemp()}°',
-                                      style: const TextStyle(fontSize: 25)),
-                                  const SizedBox(height: 15),
-                                  Text(weatherList.main,
-                                      style: const TextStyle(fontSize: 17)),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text('${viewModel.getMaxTemp()}° / '),
-                                      Text('${viewModel.getMinTemp()}°'),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Text(viewModel.getWeatherIcon(weatherList.id),
-                                      style: const TextStyle(fontSize: 50)),
-                                  const SizedBox(height: 40),
-                                  Text(weatherList.description,
-                                      style: const TextStyle(fontSize: 15)),
-                                  const SizedBox(height: 40),
-                                  Text(
-                                      '${viewModel.getMessage(viewModel.temp())}\nin ${viewModel.name}!',
-                                      style: const TextStyle(fontSize: 15),
-                                      textAlign: TextAlign.center),
-                                ],
-                              ),
-                            );
-                          }).toList(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 53.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              viewModel.myWeather.name,
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                                ' ${viewModel.convertTemp(viewModel.myWeather.temp)}°',
+                                style: const TextStyle(fontSize: 25)),
+                            const SizedBox(height: 15),
+                            Text(viewModel.myWeather.main,
+                                style: const TextStyle(fontSize: 17)),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                    '${viewModel.convertTemp(viewModel.myWeather.maxTemp)}° / '),
+                                Text(
+                                    '${viewModel.convertTemp(viewModel.myWeather.minTemp)}°'),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                                viewModel
+                                    .getWeatherIcon(viewModel.myWeather.id),
+                                style: const TextStyle(fontSize: 50)),
+                            const SizedBox(height: 40),
+                            Text(viewModel.myWeather.description,
+                                style: const TextStyle(fontSize: 15)),
+                            const SizedBox(height: 40),
+                            Text(
+                                '${viewModel.getMessage(viewModel.myWeather.temp)}\nin ${viewModel.myWeather.name}!',
+                                style: const TextStyle(fontSize: 15),
+                                textAlign: TextAlign.center),
+                          ],
                         ),
                       ),
                     ],
